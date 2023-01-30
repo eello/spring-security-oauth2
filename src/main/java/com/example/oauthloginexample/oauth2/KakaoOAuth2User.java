@@ -7,12 +7,12 @@ import java.util.Collection;
 import java.util.Map;
 
 @Getter
-public class KakaoCustomOAuth2User extends CustomOAuth2User {
+public class KakaoOAuth2User extends CustomOAuth2User {
 
     private Map<String, Object> account;
     private Map<String, Object> profile;
 
-    public KakaoCustomOAuth2User(Map<String, Object> attributes, Collection<? extends GrantedAuthority> authorities, String name) {
+    public KakaoOAuth2User(Map<String, Object> attributes, Collection<? extends GrantedAuthority> authorities, String name) {
         super(attributes, authorities, name);
         this.account = (Map<String, Object>) attributes.get("kakao_account");
         this.profile = (Map<String, Object>) account.get("profile");

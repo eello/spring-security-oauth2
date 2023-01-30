@@ -22,7 +22,7 @@ public class JwtProvider {
 
     private final String SECRET_KEY;
 
-    private static final Long ACCESS_TOKEN_VALIDATE_TIME = 1000L * 60 * 60;
+    private static final Long ACCESS_TOKEN_VALIDATE_TIME = 1000L;
     public static final Long REFRESH_TOKEN_VALIDATE_TIME = 1000L * 60 * 60 * 24 * 7;
     private final String AUTHORITIES_KEY = "role";
 
@@ -70,7 +70,9 @@ public class JwtProvider {
                 Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                 .map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 
-        return new UsernamePasswordAuthenticationToken(claims.getSubject(), "", authorities);
+
+
+        return new UsernamePasswordAuthenticationToken(new CustomOAuth2User(claims.getSubject()), "", authorities);
     }
 
     private Claims parseClaims(String accessToken) {

@@ -39,6 +39,8 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
                 .path("/")
                 .build();
 
+        clearAuthenticationAttributes(request, response);
+
         response.addHeader("Set-Cookie", cookie.toString());
         response.getWriter().write(accessToken);
     }
@@ -59,5 +61,9 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         }
 
         userRepository.save(user);
+    }
+
+    protected void clearAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response) {
+        super.clearAuthenticationAttributes(request);
     }
 }

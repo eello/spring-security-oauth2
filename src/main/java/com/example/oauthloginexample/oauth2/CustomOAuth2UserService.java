@@ -27,7 +27,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         log.info("oauth provider: {}", registrationId);
 
-        CustomOAuth2User customOAuth2User = new KakaoCustomOAuth2User(
+        CustomOAuth2User customOAuth2User = new KakaoOAuth2User(
                 oAuth2User.getAttributes(),
                 Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
                 "id"

@@ -6,11 +6,13 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import java.util.Collection;
 import java.util.Map;
 
-public abstract class CustomOAuth2User implements OAuth2User {
+public class CustomOAuth2User implements OAuth2User {
 
     private Map<String, Object> attributes;
     private Collection<? extends GrantedAuthority> authorities;
     private String name;
+    private String email;
+    private String nickname;
 
     public CustomOAuth2User(Map<String, Object> attributes, Collection<? extends GrantedAuthority> authorities, String name) {
         this.attributes = attributes;
@@ -18,8 +20,16 @@ public abstract class CustomOAuth2User implements OAuth2User {
         this.name = name;
     }
 
-    public abstract String getEmail();
-    public abstract String getNickname();
+    public CustomOAuth2User(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public String getNickname() {
+        return nickname;
+    }
 
     @Override
     public Map<String, Object> getAttributes() {
